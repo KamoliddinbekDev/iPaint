@@ -1,11 +1,13 @@
-// Global variables
+//global variables
 const canvas = document.querySelector("canvas"),
   toolBtns = document.querySelectorAll(".tool"),
-  fillColor = document.querySelector("#fill-color");
-// variables
+  fillColor = document.querySelector("#fill-color"),
+  sizeSlider = document.querySelector("#size-slider");
+
+//variables with default value
 let ctx = canvas.getContext("2d"),
   isDrawing = false,
-  brushWidth = 5,
+  brushWidth = sizeSlider,
   selectedTool = "brush",
   prevMouseX,
   prevMouseY,
@@ -25,11 +27,6 @@ const startDraw = (e) => {
   ctx.beginPath();
   ctx.lineWidth = brushWidth;
   snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
-};
-
-//stop drawing
-const stopDraw = () => {
-  isDrawing = false;
 };
 
 //draw rectangle
@@ -101,6 +98,14 @@ toolBtns.forEach((btn) => {
     console.log(selectedTool);
   });
 });
+
+//change brush size
+sizeSlider.addEventListener("change", () => (brushWidth = sizeSlider.value));
+
+//stop drawing
+const stopDraw = () => {
+  isDrawing = false;
+};
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
