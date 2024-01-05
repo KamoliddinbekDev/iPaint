@@ -120,7 +120,7 @@ section {
 }
 
 .colors .option:nth-child(5) {
-  background-color: #4a98f7;
+  background-color: #4a98ff;
 }
 
 .colors .option.selected::before {
